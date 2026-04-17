@@ -33,7 +33,7 @@ const toggleDark = useToggle(isDark);
                         target="_blank"
                         class="dark:text-foreground"
                     >
-                        Sisamcus
+                        WakJoel
                     </a>
                 </Button>
                 <Button variant="ghost" size="icon" @click="toggleDark()">

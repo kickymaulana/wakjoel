@@ -8,16 +8,11 @@ import { useForm, Link } from '@inertiajs/vue3'
 
 const props = defineProps<{
   class?: string
-  departemens: Array<{ id: number, nama: string }>
-  roles: Array<{ id: number, name: string }>
 }>()
 
-// Email dihapus dari form state karena akan di-generate otomatis di backend
 const form = useForm({
   name: '',
   username: '',
-  departemen_id: '',
-  role: '',
   password: '',
   password_confirmation: '',
 })
@@ -31,106 +26,68 @@ const submit = () => {
 
 <template>
   <div :class="cn('flex flex-col gap-6', props.class)">
-    <Card class="bg-white/30 dark:bg-black/20 backdrop-blur-xl border-white/20 dark:border-white/5 shadow-2xl">
-      <CardHeader>
-        <CardTitle>Daftar Akun</CardTitle>
-        <CardDescription>
-          Silakan lengkapi data untuk bergabung dengan Sisamcus.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+    <Card class="bg-transparent border-none shadow-none p-0">
+      <CardContent class="p-0">
         <form @submit.prevent="submit">
-          <FieldGroup class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FieldGroup class="space-y-5">
 
-            <Field class="md:col-span-2">
-              <FieldLabel for="name">Nama Lengkap</FieldLabel>
+            <Field>
+              <FieldLabel for="name" class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Nama Lengkap</FieldLabel>
               <Input
                 id="name"
                 v-model="form.name"
-                type="text"
-                placeholder="Contoh: Kicky Maulana"
+                placeholder="Masukkan nama..."
+                class="h-12 bg-white/50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 rounded-xl"
                 required
               />
               <p v-if="form.errors.name" class="text-destructive text-xs mt-1">{{ form.errors.name }}</p>
             </Field>
 
-            <Field class="md:col-span-2">
-              <FieldLabel for="username">Username</FieldLabel>
+            <Field>
+              <FieldLabel for="username" class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Username</FieldLabel>
               <Input
                 id="username"
                 v-model="form.username"
-                type="text"
-                placeholder="Gunakan nama tanpa spasi"
+                placeholder="Contoh: kicky_maulana"
+                class="h-12 bg-white/50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 rounded-xl"
                 required
               />
               <p v-if="form.errors.username" class="text-destructive text-xs mt-1">{{ form.errors.username }}</p>
             </Field>
 
-            <Field>
-              <FieldLabel for="departemen">Departemen</FieldLabel>
-              <select
-                id="departemen"
-                v-model="form.departemen_id"
-                class="flex h-10 w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                required
-              >
-                <option value="" disabled>Pilih Departemen</option>
-                <option v-for="dept in departemens" :key="dept.id" :value="dept.id">
-                  {{ dept.nama }}
-                </option>
-              </select>
-              <p v-if="form.errors.departemen_id" class="text-destructive text-xs mt-1">{{ form.errors.departemen_id }}</p>
-            </Field>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field>
+                <FieldLabel for="password" class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Password</FieldLabel>
+                <Input
+                  id="password"
+                  v-model="form.password"
+                  type="password"
+                  class="h-12 bg-white/50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 rounded-xl"
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel for="password_confirmation" class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Konfirmasi</FieldLabel>
+                <Input
+                  id="password_confirmation"
+                  v-model="form.password_confirmation"
+                  type="password"
+                  class="h-12 bg-white/50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 rounded-xl"
+                  required
+                />
+              </Field>
+            </div>
 
-            <Field>
-              <FieldLabel for="role">Role / Jabatan</FieldLabel>
-              <select
-                id="role"
-                v-model="form.role"
-                class="flex h-10 w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                required
-              >
-                <option value="" disabled>Pilih Role</option>
-                <option v-for="role in roles" :key="role.id" :value="role.name">
-                  {{ role.name }}
-                </option>
-              </select>
-              <p v-if="form.errors.role" class="text-destructive text-xs mt-1">{{ form.errors.role }}</p>
-            </Field>
-
-            <Field>
-              <FieldLabel for="password">Password</FieldLabel>
-              <Input
-                id="password"
-                v-model="form.password"
-                type="password"
-                required
-              />
-            </Field>
-
-            <Field>
-              <FieldLabel for="password_confirmation">Konfirmasi</FieldLabel>
-              <Input
-                id="password_confirmation"
-                v-model="form.password_confirmation"
-                type="password"
-                required
-              />
-              <p v-if="form.errors.password" class="text-destructive text-xs mt-1">{{ form.errors.password }}</p>
-            </Field>
-
-            <Field class="md:col-span-2 mt-2">
-              <Button type="submit" :disabled="form.processing" class="w-full">
-                {{ form.processing ? 'Memproses...' : 'Daftar Sekarang' }}
-              </Button>
-            </Field>
+            <Button type="submit" :disabled="form.processing" class="w-full h-12 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-600/20">
+              {{ form.processing ? 'Memproses...' : 'Daftar Sekarang' }}
+            </Button>
           </FieldGroup>
         </form>
 
-        <div class="mt-6 text-center text-sm">
-          Sudah punya akun?
-          <Link :href="route('login')" class="font-medium underline underline-offset-4 hover:text-primary">
-            Masuk ke Sisamcus
+        <div class="mt-8 text-center text-sm font-medium">
+          <span class="text-slate-500">Sudah punya akun?</span>
+          <Link :href="route('login')" class="ml-1 text-orange-600 underline underline-offset-4 hover:text-orange-700">
+            Masuk ke Wakjoel
           </Link>
         </div>
       </CardContent>

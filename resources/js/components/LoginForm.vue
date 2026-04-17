@@ -41,7 +41,7 @@ const submit = () => {
   <div :class="cn('flex flex-col gap-6', props.class)">
     <Card class="bg-white/30 dark:bg-black/20 backdrop-blur-xl border-white/20 dark:border-white/5 shadow-2xl">
       <CardHeader>
-        <CardTitle>Sisamcus</CardTitle>
+        <CardTitle>WakJoel</CardTitle>
         <CardDescription>
           Masukan username untuk masuk ke aplikasi
         </CardDescription>
@@ -68,10 +68,10 @@ const submit = () => {
                   Password
                 </FieldLabel>
                 <a
-                  href="#"
+                  href="register"
                   class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                 >
-                  Lupa password?
+                  Register
                 </a>
               </div>
               <Input id="password" type="password" required v-model="form.password" />

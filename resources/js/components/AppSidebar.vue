@@ -68,12 +68,12 @@ const masterData = [
                         class="data-[slot=sidebar-menu-button]:!p-1.5"
                     >
                         <Link
-                            :href="route('dashboard')"
+                            href="#"
                             as="button"
                             class="w-full text-left"
                         >
                             <IconInnerShadowTop class="!size-5" />
-                            <span class="font-bold tracking-tight">SISAMCUS</span>
+                            <span class="font-bold tracking-tight">WakJoel</span>
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
