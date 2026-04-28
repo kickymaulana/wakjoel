@@ -9,6 +9,7 @@ import {
     IconHierarchy,
     IconBuilding,
     IconGitMerge,
+    IconList,
 } from "@tabler/icons-vue";
 
 import Master from "@/components/Master.vue";
@@ -58,7 +59,7 @@ const masterData = [
     {
         name: "Menu",
         url: route("menus.index"),
-        icon: IconHierarchy,
+        icon: IconList,
         root: "Master/Menus",
     },
 ];
