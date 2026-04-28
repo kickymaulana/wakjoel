@@ -55,6 +55,12 @@ const masterData = [
         icon: IconHierarchy,
         root: "Master/Roles",
     },
+    {
+        name: "Menu",
+        url: route("menus.index"),
+        icon: IconHierarchy,
+        root: "Master/Menus",
+    },
 ];
 </script>
 
